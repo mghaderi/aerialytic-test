@@ -1,0 +1,7 @@
+apiVersion: v2
+name: helm-chart
+description: A Helm chart for deploying the Solar Panel Optimization Tool.
+
+version: 0.1.0
+# app version only for metadata
+appVersion: "1.0.0"

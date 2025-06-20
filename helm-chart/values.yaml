@@ -1,0 +1,22 @@
+replicaCount: 1
+
+backend:
+  replicaCount: 1
+  image:
+    repository: solar-backend
+    tag: latest
+    pullPolicy: Never
+  debug: "True"
+  allowedHosts: "*"
+  secretKey: "not_safe_secret_key_adfadsf@$%sdafadf234"
+frontend:
+  replicaCount: 1
+  image:
+    repository: solar-frontend
+    tag: latest
+    pullPolicy: Never
+  service:
+    type: NodePort
+
+nameOverride: ""
+fullnameOverride: ""

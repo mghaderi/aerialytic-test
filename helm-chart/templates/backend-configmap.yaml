@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "helm-chart.fullname" . }}-backend-config
+  labels:
+    {{- include "helm-chart.labels" . | nindent 4 }}
+    app.kubernetes.io/component: backend
+data:
+  django_debug: {{ .Values.backend.debug | quote }}
+  django_allowed_hosts: {{ .Values.backend.allowedHosts | quote }}

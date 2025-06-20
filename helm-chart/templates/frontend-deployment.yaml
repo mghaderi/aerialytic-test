@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "helm-chart.fullname" . }}-frontend
+  labels:
+    {{- include "helm-chart.labels" . | nindent 4 }}
+    app.kubernetes.io/component: frontend
+spec:
+  replicas: {{ .Values.frontend.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "helm-chart.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: frontend
+  template:
+    metadata:
+      labels:
+        {{- include "helm-chart.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: "{{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}"
+          imagePullPolicy: {{ .Values.frontend.image.pullPolicy }}
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: nginx-config-volume
+              mountPath: /etc/nginx/conf.d/default.conf
+              subPath: nginx.conf
+              readOnly: true
+      volumes:
+        - name: nginx-config-volume
+          configMap:
+            name: {{ include "helm-chart.fullname" . }}-frontend-nginx-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "helm-chart.fullname" . }}-frontend-service
+  labels:
+    {{- include "helm-chart.labels" . | nindent 4 }}
+    app.kubernetes.io/component: frontend
+spec:
+  selector:
+    {{- include "helm-chart.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: {{ .Values.frontend.service.type }}
+  {{- if eq .Values.frontend.service.type "NodePort" }}
+  nodePort: {{ .Values.frontend.service.nodePort }}
+  {{- end }}

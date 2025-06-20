@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "helm-chart.fullname" . }}-backend
+  labels:
+    {{- include "helm-chart.labels" . | nindent 4 }}
+    app.kubernetes.io/component: backend
+spec:
+  replicas: {{ .Values.backend.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "helm-chart.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: backend
+  template:
+    metadata:
+      labels:
+        {{- include "helm-chart.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: backend
+    spec:
+      containers:
+        - name: backend
+          image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
+          imagePullPolicy: {{ .Values.backend.image.pullPolicy }}
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DJANGO_DEBUG
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "helm-chart.fullname" . }}-backend-config
+                  key: django_debug
+            - name: DJANGO_ALLOWED_HOSTS
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "helm-chart.fullname" . }}-backend-config
+                  key: django_allowed_hosts
+            - name: DJANGO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "helm-chart.fullname" . }}-backend-secret
+                  key: django_secret_key
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "helm-chart.fullname" . }}-backend-service
+  labels:
+    {{- include "helm-chart.labels" . | nindent 4 }}
+    app.kubernetes.io/component: backend
+spec:
+  selector:
+    {{- include "helm-chart.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: backend
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+  type: ClusterIP

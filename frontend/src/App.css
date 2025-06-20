@@ -1,0 +1,81 @@
+.App {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin-top: 20px;
+}
+  
+.App-header {
+    background-color: #282c34;
+    padding: 20px;
+    color: white;
+    margin-bottom: 30px;
+}
+  
+.input-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+  
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 300px;
+}
+  
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+  
+.form-group input {
+    padding: 8px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+  
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+  
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+  
+.error-message {
+    color: red;
+    margin-top: 20px;
+}
+  
+.results-container {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    display: inline-block;
+}
+  
+.results-container p {
+    margin: 10px 0;
+}
+
+.map-container {
+    width: 80%;
+    height: 400px;
+    margin: 30px auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+}

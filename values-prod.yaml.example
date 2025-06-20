@@ -1,0 +1,18 @@
+backend:
+  replicaCount: 1
+  image:
+    repository: "backend-docker-hub-repository"
+    tag: "backend-image-tag"
+    pullPolicy: Always
+  debug: "False"
+  allowedHosts: "localhost"
+  secretKey: "secure_secret_key"
+
+frontend:
+  replicaCount: 1
+  image:
+    repository: "frontend-docker-hub-repository"
+    tag: "frontend-image-tag"
+    pullPolicy: Always
+  service:
+    type: LoadBalancer

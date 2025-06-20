@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    image: solar-backend:latest
+    container_name: solar-backend-app
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend:/app
+    command: python manage.py runserver 0.0.0.0:8000
+    networks:
+      - solar-network
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        REACT_APP_Maps_API_KEY: ${REACT_APP_Maps_API_KEY}
+    image: solar-frontend:latest
+    container_name: solar-frontend-app
+    ports:
+      - "80:80"
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - backend
+    networks:
+      - solar-network
+
+networks:
+  solar-network:
+    driver: bridge

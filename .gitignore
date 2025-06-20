@@ -1,0 +1,42 @@
+# environment files
+values-prod.yaml
+.env
+/backend/.env
+/frontend/.env
+/backend/.env_dev
+/frontend/.env_dev
+/frontend/.env.local
+/frontend/kubernetes/frontend-fonfigmap.yaml
+
+# Logs
+/backend/gunicorn_logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+backend/__pycache__/
+backend/venv/
+backend/db.sqlite3
+backend/media/
+ 
+__pycache__/
+node_modules
+front_static
+front_static-ssr
+*.local
+venv
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
