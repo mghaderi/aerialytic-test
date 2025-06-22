@@ -2,7 +2,7 @@
 
 You can access the deployed version of this project here:
 
-👉 [http://34.135.180.212/](http://34.135.180.212/)
+[http://34.135.180.212/](http://34.135.180.212/)
 
 > Hosted on Google Kubernetes Engine (GKE) using Helm and Docker.
 
