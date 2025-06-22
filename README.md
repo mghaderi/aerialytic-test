@@ -258,7 +258,7 @@ This rule-of-thumb logic is currently used as the default calculation in the pla
 
 ### PVLib-Based Model
 
-The PVLib model is a more advanced and realistic solar geometry estimator. The following steps are applied:
+The [PVLib](https://pvlib-python.readthedocs.io/en/stable/) model is a more advanced and realistic solar geometry estimator. The following steps are applied:
 
 1. **Location Setup**  
    - The geographic location (latitude and longitude) is passed to `pvlib.location.Location`.
