@@ -128,9 +128,9 @@ This project is organized as a modular, scalable full-stack application. It incl
           ├── solar_calculator.py      # SolarCalculator interface
           └── solar_models/
               ├── __init__.py          # Abstract model base class
-              ├── liu_jordan_model.py  # Liu and Jordan model implementation
+              ├── liu_jordan_model.py  # Liu and Jordan model (placeholder)
               ├── nrel_model.py        # NREL model (placeholder)
-              └── pvlib_model.py       # PVLib model (placeholder)
+              └── pvlib_model.py       # PVLib model implementation
   ```
 
 - **Testing**:
