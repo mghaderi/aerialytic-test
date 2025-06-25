@@ -68,12 +68,6 @@ function App() {
                 onResult={setResult}
                 onError={setError}
                 setLoading={setLoading}
-                setMapPosition={(lat, lng) => {
-                    setLatitude(lat.toString());
-                    setLongitude(lng.toString());
-                    setMapCenter({ lat, lng });
-                    setMarkerPosition({ lat, lng });
-                }}
             />
             {loading && <p>Loading...</p>}
             {error && <p className="error-message">{error}</p>}

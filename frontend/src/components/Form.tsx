@@ -9,7 +9,6 @@ interface Props {
     onResult: (result: CalculationResult) => void;
     onError: (error: string) => void;
     setLoading: (loading: boolean) => void;
-    setMapPosition: (lat: number, lng: number) => void;
 }
 
 // FormComponent collects user input and triggers the backend calculation
@@ -21,7 +20,6 @@ const FormComponent: React.FC<Props> = ({
     onResult,
     onError,
     setLoading,
-    setMapPosition,
 }) => {
     // Local state for optional offset angle
     const [offsetAngle, setOffsetAngle] = useState<string>('');
@@ -75,7 +73,6 @@ const FormComponent: React.FC<Props> = ({
             // Parse and handle result
             const result = await res.json();
             onResult(result);
-            setMapPosition(latNum, lngNum);
         } catch (e: any) {
             onError(e.message || 'Something went wrong. Try again.');
         } finally {
