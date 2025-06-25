@@ -4,7 +4,7 @@ import pandas as pd
 from pvlib import irradiance
 import numpy as np
 from pvlib import location
-import pytz
+from timezonefinder import TimezoneFinder
 
 
 class PvlibCalculatorModel(SolarModel):
@@ -32,14 +32,8 @@ class PvlibCalculatorModel(SolarModel):
             Dict[str, float]: Dictionary with
             'optimal_pitch' and 'optimal_azimuth'.
         """
-        loc = location.Location(latitude, longitude)
-        try:
-            tz = pytz.timezone(loc.tz)
-        except Exception:
-            tz = pytz.utc
-        timezone = tz
-
-        loc = location.Location(latitude, longitude, tz=tz)
+        timezone = TimezoneFinder().timezone_at(lat=latitude, lng=longitude)
+        loc = location.Location(latitude, longitude, tz=timezone)
 
         times = self._full_year_time_range(timezone)
 
