@@ -1,11 +1,3 @@
-## Live Demo
-
-You can access the deployed version of this project here:
-
-[http://34.135.180.212/](http://34.135.180.212/)
-
-> Hosted on Google Kubernetes Engine (GKE) using Helm and Docker.
-
 ## Setup Steps
 
 This project is a full-stack solar optimization tool featuring a React (TypeScript) frontend and a Django (Python) backend. It supports local development with or without Docker, and production deployment via Kubernetes and Helm.
